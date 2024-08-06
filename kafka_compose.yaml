@@ -1,0 +1,24 @@
+name: kafkawithui
+
+services:
+  kafka:
+    image: apache/kafka:latest
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - 9092:9092
+      - 29092:29092
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    hostname: kafka-ui
+    ports:
+      - 8082:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: true
+
+networks:
+  default:
+    external: true
+    name: ch_cluster1_net
